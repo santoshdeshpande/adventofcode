@@ -18,7 +18,7 @@ defmodule AoC.Day02Test do
     data = File.read!("./test/input/day02.txt") |> String.split("\n")
     x = AoC.Day02.find_area(data)
     assert x == 1586300
-    IO.puts AoC.Day02.find_ribbon_length(data)
+    # IO.puts AoC.Day02.find_ribbon_length(data)
   end
 
   test "2x3x4 returns 24 as the ribbon length" do

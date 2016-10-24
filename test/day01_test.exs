@@ -19,14 +19,14 @@ defmodule AoC.Day01Test do
 		["())", "))("] 
 		|> Enum.each(fn(str) -> 
 			assert AoC.Day01.find_floor(str) == -1
-		end)		
+		end)
 	end
 
 	test "))) and )())()) both result in floor -3" do
 		[")))", ")())())"]
 		|> Enum.each(fn(str) -> 
 			assert AoC.Day01.find_floor(str) == -3
-		end)		
+		end)
 	end
 
 	test ") causes him to enter the basement at character position 1" do

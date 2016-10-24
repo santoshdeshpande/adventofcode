@@ -5,15 +5,13 @@ defmodule AoC.Day02 do
   end
 
   def find_area(spec) when is_binary(spec) do
-    [l,w,h] = String.trim(spec)
-                |> String.split("x")
-                |> Enum.map(&String.to_integer/1)
-    list = [l*w, w*h, h*l]
-    min = Enum.min list
-    area = Enum.reduce(list, 0, fn(x,acc) -> 2*x + acc end)
-    total_area = area + min
-    total_area
+    String.trim(spec)
+      |> String.split("x")
+      |> Enum.map(&String.to_integer/1)
+      |> Enum.sort
+      |> find_actual_area
   end
+
 
 
   def find_area(list) when is_list(list) do
@@ -27,11 +25,11 @@ defmodule AoC.Day02 do
   end
 
   def find_ribbon_length(spec) when is_binary(spec) do
-    [l,w,h] = String.trim(spec)
-                |> String.split("x")
-                |> Enum.map(&String.to_integer/1)
-    perimeters = [2*(l+w), 2*(w+h), 2*(h+l)]
-    min_perim = Enum.min(perimeters) + (l*w*h)
+    String.trim(spec)
+     |> String.split("x")
+     |> Enum.map(&String.to_integer/1)
+     |> Enum.sort
+     |> find_length
   end
 
   def find_ribbon_length(list) when is_list(list) do
@@ -39,4 +37,11 @@ defmodule AoC.Day02 do
       |> Enum.reduce(0, fn(x, acc) -> find_ribbon_length(x)+acc end)
   end
 
+  defp find_length([l,w,h]) do
+    2*(l+w) + (l*w*h)
+  end
+
+  defp find_actual_area([l,w,h]) do
+    2*l*w+2*w*h+2*h*l + (l*w)
+  end
 end
