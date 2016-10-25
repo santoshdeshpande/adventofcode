@@ -15,7 +15,7 @@ defmodule AoC.Day03Test do
 
   test "file input" do
     data = File.read!("./test/input/day03.txt") |> String.split("\n")
-    [first | rest] = data
+    [first | _rest] = data
     assert AoC.Day03.find_house_count(first) == 2592
   end
 end
